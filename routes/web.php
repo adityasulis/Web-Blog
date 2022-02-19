@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,58 +32,7 @@ Route::get('/about', function () {
 
 
 
-Route::get('/blog', function () {
-    $blog_posts = [
-        [
-            'title' => 'First time learning Laravel',
-            'slug' => 'first-time-learning-laravel',
-            'author' => 'Aditya Sulistyo',
-            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rerum voluptatibus nostrum labore facilis a distinctio, exercitationem non explicabo pariatur unde animi accusantium aliquam corporis molestias nobis reiciendis in quos totam fugiat. Delectus tempora nobis ad ullam provident veniam, hic sed iste neque laudantium maiores voluptatum doloribus natus deleniti amet dolorum impedit illo magnam doloremque esse consequatur placeat. Corporis maiores ea nulla dolorem, excepturi impedit quia libero magni molestiae? Iusto, magnam quos quod repudiandae in nostrum optio sint molestiae ratione expedita numquam quia praesentium eaque laudantium recusandae sapiente ea est nemo nihil illum vel saepe quidem dolorum! Similique, culpa facilis?'
-        ],
-
-        [
-            'title' => "Is Giorno Giovana Joseph's Uncle",
-            'slug' => "is-giorno-giovana-joseph's-uncle",
-            'author' => 'Aditya Sulistyo',
-            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rerum voluptatibus nostrum labore facilis a distinctio, exercitationem non explicabo pariatur unde animi accusantium aliquam corporis molestias nobis reiciendis in quos totam fugiat. Delectus tempora nobis ad ullam provident veniam, hic sed iste neque laudantium maiores voluptatum doloribus natus deleniti amet dolorum impedit illo magnam doloremque esse consequatur placeat.'
-        ]
-    ];
-
-    return view('posts', [
-        'title' => 'Posts',
-        'posts' => $blog_posts
-    ]);
-});
-
+Route::get('/blog', [PostController::class, 'index']);
 
 // halaman single post
-Route::get('posts/{slug}', function ($slug) {
-    $blog_posts = [
-        [
-            'title' => 'First time learning Laravel',
-            'slug' => 'first-time-learning-laravel',
-            'author' => 'Aditya Sulistyo',
-            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rerum voluptatibus nostrum labore facilis a distinctio, exercitationem non explicabo pariatur unde animi accusantium aliquam corporis molestias nobis reiciendis in quos totam fugiat. Delectus tempora nobis ad ullam provident veniam, hic sed iste neque laudantium maiores voluptatum doloribus natus deleniti amet dolorum impedit illo magnam doloremque esse consequatur placeat. Corporis maiores ea nulla dolorem, excepturi impedit quia libero magni molestiae? Iusto, magnam quos quod repudiandae in nostrum optio sint molestiae ratione expedita numquam quia praesentium eaque laudantium recusandae sapiente ea est nemo nihil illum vel saepe quidem dolorum! Similique, culpa facilis?'
-        ],
-
-        [
-            'title' => "Is Giorno Giovana Joseph's Uncle",
-            'slug' => "is-giorno-giovana-joseph's-uncle",
-            'author' => 'Aditya Sulistyo',
-            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi rerum voluptatibus nostrum labore facilis a distinctio, exercitationem non explicabo pariatur unde animi accusantium aliquam corporis molestias nobis reiciendis in quos totam fugiat. Delectus tempora nobis ad ullam provident veniam, hic sed iste neque laudantium maiores voluptatum doloribus natus deleniti amet dolorum impedit illo magnam doloremque esse consequatur placeat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-            Sequi rerum voluptatibus nostrum labore facilis a distinctio, exercitationem non explicabo pariatur unde animi accusantium aliquam corporis molestias nobis reiciendis in quos totam fugiat. Delectus tempora nobis ad ullam provident veniam, hic sed iste neque laudantium maiores voluptatum doloribus natus deleniti amet dolorum impedit illo magnam doloremque esse consequatur placeat. Corporis maiores ea nulla dolorem, excepturi impedit quia libero magni molestiae? Iusto, magnam quos quod repudiandae in nostrum optio sint molestiae ratione expedita numquam quia praesentium eaque laudantium recusandae sapiente ea est nemo nihil illum vel saepe quidem dolorum! Similique, culpa facilis?'
-        ]
-    ];
-
-    $new_post = [];
-    foreach ($blog_posts as $post) {
-        if ($post["slug"] === $slug) {
-            $new_post = $post;
-        }
-    }
-    return view('post', [
-
-        'title' => 'Single Post',
-        'post' => $new_post
-    ]);
-});
+Route::get('posts/{post:slug}', [PostController::class, 'show']);

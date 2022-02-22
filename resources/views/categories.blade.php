@@ -10,6 +10,7 @@
            <h2>
                <a href="/categories/{{ $category->slug }}" style="text-decoration: none;"> {{ $category->name  }} </a>
            </h2>
+    
        </li>
    </ul>
 

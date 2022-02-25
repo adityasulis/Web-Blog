@@ -14,6 +14,7 @@ class Post extends Model
 
     //menutup variable id dan membuka variable lain
     protected $guarded = ['id'];
+    protected $with = ['category', 'author'];
 
     public function category()
     {

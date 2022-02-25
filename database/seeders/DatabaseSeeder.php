@@ -16,10 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         // User::create([
         //     'name' => 'Aditya Sulistyo',
+        //     'username' => 'adityasulis',
         //     'email' => 'aditya@gmail.com',
+        //     'email_verified_at' => null,
         //     'password' => bcrypt('admin')
         // ]);
         // User::create([
@@ -37,8 +38,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'Anime',
             'slug' => 'anime'
         ]);
+        Category::create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
 
-        Post::factory(10)->create();
+        Post::factory(20)->create();
         // Post::create([
         //     'title' => 'Learning Laravel in 1 week',
         //     'slug' => 'learning-laravel-in-1-week',
